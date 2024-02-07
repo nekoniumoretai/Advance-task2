@@ -1,0 +1,12 @@
+<!--@model の値に応じて検索結果の見出しと一覧表示の条件分岐している-->
+
+<!--⬇️ @modelが user の場合、ユーザーの検索結果を表示します-->
+<% if @model == 'user' %>
+    <h3>Users search for "<%= @content %>"</h3>
+  <%= render 'users/index', users: @records %>
+
+<!--⬇️ @model が book の場合、書籍の検索結果を表示します-->
+<% elsif @model == 'book' %>
+    <h3>Books search for "<%= @content %>"</h3>
+  <%= render 'books/index', books: @records %>
+<% end %>
