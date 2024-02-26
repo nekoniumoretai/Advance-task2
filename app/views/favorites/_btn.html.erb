@@ -1,12 +1,9 @@
-<!--いいね機能の非同期化の部分テンプレート-->
-
 <% if book.favorited_by?(current_user) %>
-  <%= link_to book.favorites.count, book_favorites_path(book), method: :delete, remote: true, class: "glyphicon glyphicon-heart" %>
-  <!--remote: true は非同期化通信を行うためのオプション-->
-
+  <%= link_to book_favorites_path(book), method: :delete, remote: true, class: "fa fa-heart" do %>
+    <%= book.favorites.count %>
+  <% end %>
 <% else %>
-
-  <%= link_to book.favorites.count, book_favorites_path(book), method: :post, remote: true, class: "glyphicon glyphicon-heart-empty" %>
-  <!--remote: true は非同期化通信を行うためのオプション-->
-
+  <%= link_to book_favorites_path(book), method: :post, remote: true, class: "fa fa-heart-o" do %>
+    <%= book.favorites.count %>
+  <% end %>
 <% end %>
