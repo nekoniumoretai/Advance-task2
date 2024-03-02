@@ -1,0 +1,38 @@
+<!--関連部分のみ-->
+<div class='col-md-8 offset-md-1'>
+      <h2>Groups</h2>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th></th>
+            <th>グループ名</th>
+            <th>紹介文</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <td>
+                <!--三項演算子で条件式を簡素化。行っていることは下記のif文と同じ-->
+                <%= image_tag(group.image_id.present? ? group.image_id : "no-image-icon.jpg", size: "50x50") %>
+
+                <!--<% if group.image_id.present? %>-->
+                  <!--<%= image_tag group.image_id,{ size: "50x50", fallback: "no-image-icon.jpg"} %>-->
+                <!--<% else %>-->
+                  <!--<%= image_tag("no-image-icon.jpg", {size: "50x50"}) %>-->
+                <!--<% end %>-->
+
+              </td>
+              <td><%= link_to group.name, group_path(group) %></td>
+              <td><%= group.introduction %></td>
+              <td>
+                <% if group.owner_id == current_user.id %>
+                  <%= link_to 'Edit', edit_group_path(group), class: "btn btn-sm btn-success" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :group_users, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :books
   has_many :book_comments, dependent: :destroy
@@ -52,5 +53,5 @@ class User < ApplicationRecord
       User.where('name LIKE ?', '%' + content + '%')
     end
   end
-  
+
 end
